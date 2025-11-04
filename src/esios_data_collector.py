@@ -266,7 +266,7 @@ class ESIOSDataCollector:
         # Save to file
         output_data = {
             'metadata': {
-                'generated_at': datetime.utcnow().isoformat(),
+                'generated_at': datetime.now(pytz.UTC).isoformat(),
                 'total_indicators': len(processed),
                 'categories': {cat: len([i for i in processed if i['category'] == cat]) 
                              for cat in self.CATEGORIES.keys()}
