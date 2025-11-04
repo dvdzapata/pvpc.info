@@ -8,6 +8,10 @@ python-dotenv>=1.0.0
 
 # Data storage
 sqlalchemy>=2.0.0
+psycopg2-binary>=2.9.0
+
+# Progress tracking
+tqdm>=4.66.0
 
 # Utilities
 python-dateutil>=2.8.0
