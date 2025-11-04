@@ -50,7 +50,10 @@ class PVPCDataCollector:
             start_date = DEFAULT_START_DATE
         
         if end_date is None:
-            end_date = (datetime.now() - timedelta(days=1)).strftime('%Y-%m-%d')
+            # Use timezone-aware datetime for consistency
+            import pytz
+            tz = pytz.timezone(DEFAULT_TIMEZONE)
+            end_date = (datetime.now(tz) - timedelta(days=1)).strftime('%Y-%m-%d')
         
         # Get indicator ID
         indicator_id = INDICATORS.get(indicator_name)

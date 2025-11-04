@@ -19,9 +19,20 @@ class TestESIOSClient:
         assert client.base_url == "https://api.esios.ree.es"
     
     def test_client_initialization_no_token(self):
-        """Test client can be initialized without token"""
-        client = ESIOSClient()
-        assert client.token is not None or client.token == ""
+        """Test client raises ValueError when no token provided"""
+        import os
+        # Temporarily clear the token env var
+        old_token = os.environ.get('ESIOS_API_TOKEN')
+        if 'ESIOS_API_TOKEN' in os.environ:
+            del os.environ['ESIOS_API_TOKEN']
+        
+        try:
+            with pytest.raises(ValueError, match="No API token provided"):
+                ESIOSClient()
+        finally:
+            # Restore the token
+            if old_token:
+                os.environ['ESIOS_API_TOKEN'] = old_token
     
     @patch('src.esios_client.requests.Session.get')
     def test_get_indicators(self, mock_get):

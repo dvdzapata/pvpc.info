@@ -22,10 +22,18 @@ class ESIOSClient:
         
         Args:
             token: API token for authentication. If not provided, uses config.
+        
+        Raises:
+            ValueError: If no API token is provided
         """
         self.token = token or ESIOS_API_TOKEN
         if not self.token:
-            logger.warning("No API token provided. Some endpoints may not work.")
+            raise ValueError(
+                "No API token provided. Please:\n"
+                "  1. Set ESIOS_API_TOKEN in your .env file, or\n"
+                "  2. Pass token parameter to ESIOSClient(), or\n"
+                "  3. Get a free token at https://www.esios.ree.es"
+            )
         
         self.base_url = ESIOS_BASE_URL
         self.session = requests.Session()
@@ -181,7 +189,8 @@ class ESIOSClient:
                 if not chunk_data.empty:
                     all_data.append(chunk_data)
                 
-                current_start = current_end + timedelta(days=1)
+                # Continue from where this chunk ended (no gap, no overlap)
+                current_start = current_end
                 
                 # Rate limiting
                 if current_start < end:
@@ -189,8 +198,8 @@ class ESIOSClient:
                     
             except Exception as e:
                 logger.error(f"Error fetching chunk {current_start} to {current_end}: {e}")
-                # Continue with next chunk
-                current_start = current_end + timedelta(days=1)
+                # Continue from where this chunk would have ended to avoid gaps
+                current_start = current_end
         
         if all_data:
             return pd.concat(all_data, axis=0)
