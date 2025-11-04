@@ -29,6 +29,10 @@ INDICATORS = {
     'pvpc_base': 1739,   # PVPC base price
 }
 
+# AEMET API Configuration
+AEMET_API_TOKEN = os.getenv('AEMET_API_TOKEN', '')
+AEMET_BASE_URL = 'https://opendata.aemet.es/opendata/api'
+
 # Data collection settings
 DEFAULT_START_DATE = '2021-01-01'  # Start of historical data collection
 DEFAULT_TIMEZONE = 'Europe/Madrid'
