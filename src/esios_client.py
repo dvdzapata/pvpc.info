@@ -26,8 +26,8 @@ class ESIOSClient:
         Raises:
             ValueError: If no API token is provided
         """
-        self.token = token or ESIOS_API_TOKEN
-        if not self.token:
+        self.token = token if token is not None else ESIOS_API_TOKEN
+        if not self.token or self.token.strip() == '':
             raise ValueError(
                 "No API token provided. Please:\n"
                 "  1. Set ESIOS_API_TOKEN in your .env file, or\n"
