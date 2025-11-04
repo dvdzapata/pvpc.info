@@ -8,19 +8,22 @@ import sys
 from datetime import datetime, timedelta
 
 from src.commodity_collector import CommodityDataCollector
-from src.config import COMMODITY_EPICS, CAPITAL_MAX_HISTORICAL_DAYS
+from src.config import COMMODITY_EPICS, CAPITAL_MAX_HISTORICAL_DAYS, LOG_DIR
 
 
 def setup_logging(verbose: bool = False):
     """Setup logging configuration"""
     level = logging.DEBUG if verbose else logging.INFO
     
+    # Ensure log directory exists
+    LOG_DIR.mkdir(parents=True, exist_ok=True)
+    
     logging.basicConfig(
         level=level,
         format='%(asctime)s - %(name)s - %(levelname)s - %(message)s',
         handlers=[
             logging.StreamHandler(sys.stdout),
-            logging.FileHandler('logs/commodity_collection.log')
+            logging.FileHandler(LOG_DIR / 'commodity_collection.log')
         ]
     )
 

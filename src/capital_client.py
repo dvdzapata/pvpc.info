@@ -12,6 +12,9 @@ from .config import CAPITAL_BASE_URL, CAPITAL_RATE_LIMIT, DEFAULT_TIMEZONE
 
 logger = logging.getLogger(__name__)
 
+# Maximum data points that can be requested from the API in a single call
+MAX_API_POINTS = 10000
+
 
 class CapitalClient:
     """Client for the Capital.com API to retrieve commodity market data"""
@@ -202,11 +205,11 @@ class CapitalClient:
             try:
                 # Calculate max points based on resolution and date range
                 if resolution == 'MINUTE':
-                    max_points = min(chunk_days * 24 * 60, 10000)
+                    max_points = min(chunk_days * 24 * 60, MAX_API_POINTS)
                 elif resolution == 'HOUR':
-                    max_points = min(chunk_days * 24, 10000)
+                    max_points = min(chunk_days * 24, MAX_API_POINTS)
                 elif resolution == 'DAY':
-                    max_points = min(chunk_days, 10000)
+                    max_points = min(chunk_days, MAX_API_POINTS)
                 else:
                     max_points = 1000
                 

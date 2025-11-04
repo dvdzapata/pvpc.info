@@ -7,6 +7,7 @@ from pathlib import Path
 import logging
 from typing import Optional, Dict, List
 import pytz
+import time
 
 from .capital_client import CapitalClient
 from .database import DatabaseManager, CommodityMetadata
@@ -205,7 +206,7 @@ class CommodityDataCollector:
                 'currency': instrument.get('currency', 'USD'),
                 'lot_size': instrument.get('lotSize', 1.0),
                 'streaming_prices_available': 1 if instrument.get('streamingPricesAvailable') else 0,
-                'last_fetch_date': datetime.now(),
+                'last_fetch_date': datetime.utcnow(),
                 'total_records': self.db.get_data_count(epic)
             }
             self.db.update_metadata(epic, metadata)
@@ -279,7 +280,6 @@ class CommodityDataCollector:
                 results[name] = df
                 
                 # Add delay between different commodities
-                import time
                 time.sleep(1)
                 
             except Exception as e:
@@ -333,7 +333,6 @@ class CommodityDataCollector:
                 results[name] = df
                 
                 # Add delay between commodities
-                import time
                 time.sleep(1)
                 
             except Exception as e:

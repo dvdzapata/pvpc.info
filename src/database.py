@@ -14,6 +14,11 @@ logger = logging.getLogger(__name__)
 Base = declarative_base()
 
 
+def _get_utcnow():
+    """Helper function to get current UTC time"""
+    return datetime.utcnow()
+
+
 class CommodityPrice(Base):
     """Model for commodity price data"""
     __tablename__ = 'commodity_prices'
@@ -42,8 +47,8 @@ class CommodityPrice(Base):
     resolution = Column(String(20))  # MINUTE, HOUR, DAY, WEEK
     
     # Timestamps
-    created_at = Column(DateTime, default=lambda: datetime.now())
-    updated_at = Column(DateTime, default=lambda: datetime.now(), onupdate=lambda: datetime.now())
+    created_at = Column(DateTime, default=_get_utcnow)
+    updated_at = Column(DateTime, default=_get_utcnow, onupdate=_get_utcnow)
     
     # Composite index for efficient querying
     __table_args__ = (
@@ -77,8 +82,8 @@ class CommodityMetadata(Base):
     total_records = Column(Integer, default=0)
     
     # Timestamps
-    created_at = Column(DateTime, default=lambda: datetime.now())
-    updated_at = Column(DateTime, default=lambda: datetime.now(), onupdate=lambda: datetime.now())
+    created_at = Column(DateTime, default=_get_utcnow)
+    updated_at = Column(DateTime, default=_get_utcnow, onupdate=_get_utcnow)
     
     def __repr__(self):
         return f"<CommodityMetadata(epic='{self.epic}', name='{self.name}')>"
@@ -147,7 +152,7 @@ class DatabaseManager:
                     existing.last_traded_volume = row.get('lastTradedVolume')
                     existing.instrument_type = row.get('instrument_type', '')
                     existing.resolution = resolution
-                    existing.updated_at = datetime.now()
+                    existing.updated_at = datetime.utcnow()
                 else:
                     # Insert new record
                     price_record = CommodityPrice(
@@ -191,7 +196,7 @@ class DatabaseManager:
                 for key, value in metadata.items():
                     if hasattr(record, key):
                         setattr(record, key, value)
-                record.updated_at = datetime.now()
+                record.updated_at = datetime.utcnow()
             else:
                 # Create new
                 record = CommodityMetadata(epic=epic, **metadata)
