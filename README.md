@@ -111,14 +111,44 @@ Formato de los datos:
 - `indicator_id`: ID del indicador
 - `indicator_name`: Nombre del indicador
 
+## Commodity Data Collection 🆕
+
+Además de los datos PVPC, el proyecto ahora incluye un sistema completo para recolectar datos de mercado de commodities (petróleo, gas natural, emisiones de carbono) desde Capital.com API.
+
+### Características
+
+- ✅ Recolección de datos históricos de commodities (hasta 2 años)
+- ✅ Soporte para múltiples resoluciones temporales (minuto, hora, día, semana)
+- ✅ Base de datos SQLite con esquema automático
+- ✅ Validación y limpieza de datos
+- ✅ Actualizaciones diarias incrementales
+- ✅ Control de rate limiting
+- ✅ Tests completos
+
+### Uso Rápido
+
+```bash
+# Recolectar todos los commodities (2 años de datos horarios)
+python collect_commodities.py --commodity all
+
+# Actualización diaria (solo nuevos datos)
+python collect_commodities.py --update
+
+# Recolectar commodity específico
+python collect_commodities.py --commodity crude_oil_rt --resolution DAY
+```
+
+Ver [docs/COMMODITIES.md](docs/COMMODITIES.md) para documentación completa.
+
 ## Próximos Pasos
 
-- [ ] Implementar base de datos (SQLite/PostgreSQL) para almacenamiento eficiente
+- [x] Implementar base de datos (SQLite/PostgreSQL) para almacenamiento eficiente
+- [x] Añadir recolección de datos de commodities
+- [x] Añadir tests automatizados
 - [ ] Desarrollar API REST pública
 - [ ] Implementar modelo TFT para predicciones
 - [ ] Crear frontend web con visualizaciones
 - [ ] Desarrollar aplicación móvil
-- [ ] Añadir tests automatizados
 - [ ] Configurar CI/CD
 
 ## Fuentes de Datos
