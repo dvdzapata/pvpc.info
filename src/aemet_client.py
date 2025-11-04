@@ -8,7 +8,7 @@ from typing import Optional, Dict, List, Any
 import logging
 import time
 
-from .config import AEMET_API_TOKEN, AEMET_BASE_URL, DEFAULT_TIMEZONE
+from .config import AEMET_API_TOKEN, AEMET_BASE_URL
 
 logger = logging.getLogger(__name__)
 
@@ -281,6 +281,7 @@ class AEMETClient:
         for col in numeric_columns:
             if col in df.columns:
                 # Replace comma with dot and convert to float
-                df[col] = df[col].str.replace(',', '.').astype(float, errors='ignore')
+                # Use pd.to_numeric with errors='coerce' to handle invalid values
+                df[col] = pd.to_numeric(df[col].str.replace(',', '.'), errors='coerce')
         
         return df

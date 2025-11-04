@@ -2,7 +2,7 @@
 Tests for AEMET API client
 """
 import pytest
-from unittest.mock import Mock, patch, MagicMock
+from unittest.mock import Mock, patch
 import pandas as pd
 from datetime import datetime
 import requests
