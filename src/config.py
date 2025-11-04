@@ -32,3 +32,38 @@ INDICATORS = {
 # Data collection settings
 DEFAULT_START_DATE = '2021-01-01'  # Start of historical data collection
 DEFAULT_TIMEZONE = 'Europe/Madrid'
+
+# Capital.com API Configuration
+CAPITAL_BASE_URL = 'https://api-capital.backend-capital.com/api/v1'
+
+# Commodity EPICs for Capital.com
+COMMODITY_EPICS = {
+    # Real-time CFDs
+    'crude_oil_rt': 'CRUDE_OIL',
+    'natural_gas_rt': 'NATURALGAS',
+    'brent_oil_rt': 'BRENT_CRUDE_OIL',
+    'gas_london_rt': 'NATURAL_GAS',
+    
+    # Futures contracts - Carbon emissions
+    'carbon_dec_2025': 'EUA.D.PHHZ5.C.IP',
+    
+    # Futures contracts - Natural Gas
+    'gas_eu_ttf_dec_2025': 'NATGAS.F.TTF.Z5.IP',
+    'gas_eu_ttf_jan_2026': 'NATGAS.F.TTF.F6.IP',
+    'gas_eu_ttf_feb_2026': 'NATGAS.F.TTF.G6.IP',
+    
+    # Futures contracts - Brent Oil
+    'brent_oil_jan_2026': 'OIL_BRENT.F.LCO.F6.IP',
+    'brent_oil_feb_2026': 'OIL_BRENT.F.LCO.G6.IP',
+    
+    # Futures contracts - Crude Oil
+    'crude_oil_dec_2025': 'OIL_CRUDE.F.CL.Z5.IP',
+    'crude_oil_jan_2026': 'OIL_CRUDE.F.CL.F6.IP',
+    
+    # Futures contracts - Gas London
+    'gas_london_nov_2025': 'NATURAL_GAS.F.NG.X5.IP',
+}
+
+# Capital.com rate limiting (requests per second)
+CAPITAL_RATE_LIMIT = 0.5  # 2 requests per second max
+CAPITAL_MAX_HISTORICAL_DAYS = 730  # 2 years maximum
