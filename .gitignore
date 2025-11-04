@@ -52,6 +52,7 @@ data/*.sqlite3
 logs/
 *.log
 !logs/.gitkeep
+!docs/example_execution.log
 
 # Testing
 .pytest_cache/
@@ -78,3 +79,6 @@ yarn-error.log*
 *.db
 *.sqlite
 *.sqlite3
+
+# Checkpoints
+checkpoints/

@@ -1,0 +1,38 @@
+2025-11-04 05:05:49 - root - INFO - ================================================================================
+2025-11-04 05:05:49 - root - INFO - ESIOS Data Collection Script
+2025-11-04 05:05:49 - root - INFO - ================================================================================
+2025-11-04 05:05:49 - root - INFO - Log file: /home/runner/work/pvpc.info/pvpc.info/logs/esios_20251104_050549.log
+2025-11-04 05:05:49 - root - INFO - --------------------------------------------------------------------------------
+2025-11-04 05:05:49 - root - INFO - Step 1: Generating indicators catalog
+2025-11-04 05:05:49 - root - INFO - --------------------------------------------------------------------------------
+2025-11-04 05:05:49 - src.esios_data_collector - INFO - Generating indicators catalog...
+2025-11-04 05:05:49 - src.esios_data_collector - INFO - Parsing indicators file: /home/runner/work/pvpc.info/pvpc.info/indicadores_esios_2025-11-03_20-06.txt
+2025-11-04 05:05:49 - src.esios_data_collector - WARNING - JSON decode error: Expecting value: line 5312 column 8 (char 809179). Attempting manual parsing...
+2025-11-04 05:05:49 - src.esios_data_collector - INFO - Parsed 1960 indicators using fallback method
+2025-11-04 05:05:49 - src.esios_data_collector - INFO - Saved catalog to /home/runner/work/pvpc.info/pvpc.info/indicators-pack1.json
+2025-11-04 05:05:49 - src.esios_data_collector - INFO - Total indicators: 1960
+2025-11-04 05:05:49 - src.esios_data_collector - INFO - By category: {'price': 1207, 'production': 505, 'demand': 203, 'capacity': 11, 'exchange': 21, 'storage': 1, 'emissions': 0, 'renewable': 0, 'other': 12}
+2025-11-04 05:05:49 - root - INFO - Catalog generated: /home/runner/work/pvpc.info/pvpc.info/indicators-pack1.json
+2025-11-04 05:05:49 - root - INFO - Total indicators: 1960
+2025-11-04 05:05:49 - root - INFO - 
+Indicators by category:
+2025-11-04 05:05:49 - root - INFO -   capacity       :   11
+2025-11-04 05:05:49 - root - INFO -   demand         :  203
+2025-11-04 05:05:49 - root - INFO -   exchange       :   21
+2025-11-04 05:05:49 - root - INFO -   other          :   12
+2025-11-04 05:05:49 - root - INFO -   price          : 1207
+2025-11-04 05:05:49 - root - INFO -   production     :  505
+2025-11-04 05:05:49 - root - INFO -   storage        :    1
+2025-11-04 05:05:49 - root - INFO - 
+Indicators by priority:
+2025-11-04 05:05:49 - root - INFO -   Priority 1:   80
+2025-11-04 05:05:49 - root - INFO -   Priority 2:  101
+2025-11-04 05:05:49 - root - INFO -   Priority 3:   12
+2025-11-04 05:05:49 - root - INFO -   Priority 5: 1767
+2025-11-04 05:05:49 - root - INFO - 
+================================================================================
+2025-11-04 05:05:49 - root - INFO - Catalog generation completed. Exiting (--catalog-only)
+2025-11-04 05:05:49 - root - INFO - ================================================================================
+2025-11-04 05:05:49 - root - INFO - 
+Output: /home/runner/work/pvpc.info/pvpc.info/indicators-pack1.json
+2025-11-04 05:05:49 - root - INFO - Log: /home/runner/work/pvpc.info/pvpc.info/logs/esios_20251104_050549.log
